@@ -4,10 +4,12 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        OperationHistory operationHistory = new OperationHistory();
         double middleResult = 0.0;
 
         System.out.println("Введите первое число");
         middleResult = scanner.nextDouble();
+
 
       boolean keepCalculating = true;
       while (keepCalculating) {
@@ -17,6 +19,7 @@ public class Main {
 
           if(choiсe == 5) {
               System.out.println("Вы вышли из программы");
+              operationHistory.printHistory();
               break;
           }
 
@@ -27,22 +30,26 @@ public class Main {
               case 1:
                middleResult = middleResult + num2;
                   System.out.println("сумма" + middleResult);
+                  operationHistory.addRecord("сумма", middleResult);
                   break;
 
               case 2:
                   middleResult = middleResult - num2;
                   System.out.println("разность" + middleResult);
+                  operationHistory.addRecord("разность", middleResult);
                   break;
 
               case 3:
                   middleResult = middleResult * num2;
                   System.out.println("произведение" +middleResult);
+                  operationHistory.addRecord("произведение", middleResult);
                   break;
 
               case 4:
                   if (num2 != 0) {
                       middleResult = middleResult / num2;
                       System.out.println("деление" + middleResult);
+                      operationHistory.addRecord("деление", middleResult);
                   } else {
                       System.out.println("  ну кто же делит на нуль. Давай попробуем ещё раз");
                   }
