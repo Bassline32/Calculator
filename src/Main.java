@@ -1,4 +1,4 @@
-import java.util.Scanner ;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,59 +10,69 @@ public class Main {
         System.out.println("Введите первое число");
         middleResult = scanner.nextDouble();
 
+        boolean keepCalculating = true;
+        while (keepCalculating) {
+            System.out.println("Какую операцию Вы хотите сделать?");
+            System.out.println("1(+) 2(-) 3(*) 4(/) 5(sqrt) 6(Выйти из программы)");
+            int choiсe = scanner.nextInt();
 
-      boolean keepCalculating = true;
-      while (keepCalculating) {
-          System.out.println("Какую операцию Вы хотите сделать?");
-          System.out.println("1(+) 2(-) 3(*) 4(/) 5(Выйти из программы)");
-          int choiсe = scanner.nextInt();
+            if (choiсe == 6) {
+                System.out.println("Вы вышли из программы");
+                operationHistory.printHistory();
+                break;
+            }
 
-          if(choiсe == 5) {
-              System.out.println("Вы вышли из программы");
-              operationHistory.printHistory();
-              break;
-          }
+            System.out.println("Введите второе число");
+            double num2 = scanner.nextDouble();
 
-          System.out.println("Введите второе число");
-          double num2 = scanner.nextDouble();
+            switch (choiсe) {
+                case 1:
+                    middleResult = middleResult + num2;
+                    System.out.println("сумма" + middleResult);
+                    operationHistory.addRecord("сумма", middleResult);
+                    break;
 
-          switch (choiсe) {
-              case 1:
-               middleResult = middleResult + num2;
-                  System.out.println("сумма" + middleResult);
-                  operationHistory.addRecord("сумма", middleResult);
-                  break;
+                case 2:
+                    middleResult = middleResult - num2;
+                    System.out.println("разность" + middleResult);
+                    operationHistory.addRecord("разность", middleResult);
+                    break;
 
-              case 2:
-                  middleResult = middleResult - num2;
-                  System.out.println("разность" + middleResult);
-                  operationHistory.addRecord("разность", middleResult);
-                  break;
+                case 3:
+                    middleResult = middleResult * num2;
+                    System.out.println("произведение" + middleResult);
+                    operationHistory.addRecord("произведение", middleResult);
+                    break;
 
-              case 3:
-                  middleResult = middleResult * num2;
-                  System.out.println("произведение" +middleResult);
-                  operationHistory.addRecord("произведение", middleResult);
-                  break;
+                case 4:
+                    if (num2 != 0) {
+                        middleResult = middleResult / num2;
+                        System.out.println("деление" + middleResult);
+                        operationHistory.addRecord("деление", middleResult);
+                    } else {
+                        System.out.println("  ну кто же делит на нуль. Давай попробуем ещё раз");
+                    }
+                    break;
 
-              case 4:
-                  if (num2 != 0) {
-                      middleResult = middleResult / num2;
-                      System.out.println("деление" + middleResult);
-                      operationHistory.addRecord("деление", middleResult);
-                  } else {
-                      System.out.println("  ну кто же делит на нуль. Давай попробуем ещё раз");
-                  }
-                  break;
+                case 5:
+                    if (num2 >= 0) {
+                        double squareRoot = Math.sqrt(num2);
+                        middleResult = squareRoot;
+                        System.out.println("Квадратный корень" + middleResult);
+                        operationHistory.addRecord("Квадратный корень", middleResult);
+                    } else {
+                        System.out.println("Корень извлекаем из числа равного или больше нуля");
+                    }
+                    break;
 
-              default:
-                  System.out.println("Вы выбрали неверную операцию. Повторите выбор.");
-                  break;
-          }
-      }
+                default:
+                    System.out.println("Вы выбрали неверную операцию. Повторите выбор.");
+                    break;
+            }
+        }
     }
 
-      }
+}
 
 
 
